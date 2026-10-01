@@ -1,3 +1,9 @@
-export default function App(){
-  return(<h1>okay</h1>)
+import Header from "./components/Header"
+import Status from "./components/Status"
+
+export default function App() {
+  return (<main>
+    <Header />
+    <Status />
+  </main>)
 }
