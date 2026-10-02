@@ -54,8 +54,8 @@ header p {
 }
 
 .game-status {
-  /* height: 60px; */
-  background-color: #10A95B;
+  height: 60px;
+  background-color: #282726;
   color: #F9F4DA;
   font-weight: 500;
   text-align: center;
@@ -67,16 +67,22 @@ header p {
   border-radius: 4px;
 }
 
+.game-status.lose {
+  background-color: #BA2A2A;
+}
+
+.game-status.win {
+  background-color: #10A95B;
+}
+
 .game-status h2 {
   font-size: 20px;
   margin: 0;
-  max-width: 80px;
 }
 
 .game-status .game-message {
   font-size: 14px;
   margin: 0px;
-  max-width: 100px;
 }
 
 .language-chips {
@@ -99,17 +105,17 @@ header p {
 
 /* Dimmed overlay with skull on "lost" languages */
 .chip.lost::before {
-    content: "💀";
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    font-size: 0.85rem;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+  content: "💀";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 0.85rem;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .word {

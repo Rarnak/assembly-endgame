@@ -1,5 +1,4 @@
 import Header from "./components/Header"
-import Status from "./components/Status"
 import { languages } from "./../languages.js"
 import { useState } from "react"
 import clsx from "clsx"
@@ -26,6 +25,23 @@ export default function App() {
   const isGameWon = currentWord.split("").every((letter) => (guess.includes(letter)))
 
   const isGameOver = isGameLost || isGameWon
+
+  const gameStatus = (isGameWon ?
+    "You Win" :
+    isGameLost ?
+      "Game Over!" :
+      "")
+
+  const gameMessage = (isGameWon ?
+    "Well done! 🎉" :
+    isGameLost ?
+      "You lose! Better start learning Assembly 😭" :
+      ""
+  )
+
+  const gameStatusClass = clsx('game-status',
+    isGameLost ? 'lose' : '',
+    isGameWon ? 'win' : '')
 
   // console.log(isGameOver)
 
@@ -107,7 +123,10 @@ export default function App() {
   return (<main>
     <section className="header">
       <Header />
-      <Status />
+      <section className={gameStatusClass}>
+        <h2>{gameStatus}</h2>
+        <p className="game-message">{gameMessage}</p>
+      </section>
     </section>
     <section className="language-chips">
       {languageElements}
@@ -118,6 +137,6 @@ export default function App() {
     <section className="keyboard">
       {KeyboardElements}
     </section>
-    {isGameOver? <button className="new-game">New Game</button> : undefined}
+    {isGameOver ? <button className="new-game">New Game</button> : undefined}
   </main>)
 }
