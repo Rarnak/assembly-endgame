@@ -9,12 +9,12 @@ export default function App() {
 
   const alphabets = 'abcdefghijklmnopqrstuvwxyz'
 
-  const KeyboardElements = alphabets.split("").map((letter, index) => {
+  const KeyboardElements = alphabets.split("").map(letter => {
     return <button
-      key={index}
+      key={letter}
       className="keyboard-letter"
     >
-      {letter}
+      {letter.toUpperCase()}
     </button>
   })
 
@@ -47,5 +47,6 @@ export default function App() {
     <section className="keyboard">
       {KeyboardElements}
     </section>
+    <button className="new-game">New Game</button>
   </main>)
 }

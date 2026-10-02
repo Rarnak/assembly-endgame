@@ -7,7 +7,7 @@ body {
   background-color: #282726;
   font-family: "Hanken Grotesk", sans-serif;
   height: 100vh;
-  padding: 50px;
+  padding: 20px;
   display: flex;
   justify-content: center;
 }
@@ -21,7 +21,7 @@ main {
 }
 
 
-.header{
+.header {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -96,13 +96,13 @@ header p {
   border-radius: 3px;
 }
 
-.word{
+.word {
   display: flex;
   justify-content: center;
   gap: 2px;
 }
 
-.letter{
+.letter {
   background-color: #323232;
   color: #F9F4DA;
   font-size: 18;
@@ -115,7 +115,7 @@ header p {
   border-bottom: 2px solid #F9F4DA;
 }
 
-.keyboard{
+.keyboard {
   padding-top: 20px;
   max-width: 480px;
   display: flex;
@@ -125,7 +125,7 @@ header p {
   gap: 8px;
 }
 
-button.keyboard-letter{
+button.keyboard-letter {
   width: 40px;
   height: 40px;
   display: flex;
@@ -136,4 +136,20 @@ button.keyboard-letter{
   border: 1px solid #D7D7D7;
   border-radius: 4px;
   cursor: pointer;
+  font-family: "Hanken Grotesk", sans-serif;
+}
+
+.new-game {
+  background-color: #11B5E5;
+  border: 1px solid #D7D7D7;
+  border-radius: 4px;
+  width: 230px;
+  height: 40px;
+  padding: 6px 12px;
+  display: block;
+  margin-inline: auto;
+  cursor: pointer;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
 }
