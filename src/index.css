@@ -80,7 +80,7 @@ header p {
   margin: 0;
 }
 
-.game-status .game-message {
+.game-status p {
   font-size: 14px;
   margin: 0px;
 }

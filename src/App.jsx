@@ -25,24 +25,6 @@ export default function App() {
   const isGameWon = currentWord.split("").every((letter) => (guess.includes(letter)))
 
   const isGameOver = isGameLost || isGameWon
-
-  const gameStatus = (isGameWon ?
-    "You Win" :
-    isGameLost ?
-      "Game Over!" :
-      "")
-
-  const gameMessage = (isGameWon ?
-    "Well done! 🎉" :
-    isGameLost ?
-      "You lose! Better start learning Assembly 😭" :
-      ""
-  )
-
-  const gameStatusClass = clsx('game-status',
-    isGameLost ? 'lose' : '',
-    isGameWon ? 'win' : '')
-
   // console.log(isGameOver)
 
   // console.log(guess)
@@ -120,12 +102,49 @@ export default function App() {
   //   />
   // })
 
+  // const gameStatus = (isGameWon ?
+  //   "You Win" :
+  //   isGameLost ?
+  //     "Game Over!" :
+  //     "")
+
+  // const gameMessage = (isGameWon ?
+  //   "Well done! 🎉" :
+  //   isGameLost ?
+  //     "You lose! Better start learning Assembly 😭" :
+  //     ""
+  // )
+
+  const gameStatusClass = clsx('game-status',
+    isGameLost ? 'lose' : '',
+    isGameWon ? 'win' : '')
+
+
+  function renderGameStatus() {
+    if (!isGameOver) {
+      return null
+    } else if (isGameWon) {
+      return (<>
+        <h2>You Win</h2>
+        <p>Well done! 🎉</p>
+      </>)
+    } else if (isGameLost) {
+      return (<>
+        <h2>Game Over!</h2>
+        <p>You lose! Better start learning Assembly 😭</p>
+      </>)
+    } else {
+      return null
+    }
+  }
+
   return (<main>
     <section className="header">
       <Header />
       <section className={gameStatusClass}>
-        <h2>{gameStatus}</h2>
-        <p className="game-message">{gameMessage}</p>
+        {/* <h2>{gameStatus}</h2>
+        <p className="game-message">{gameMessage}</p> */}
+        {renderGameStatus()}
       </section>
     </section>
     <section className="language-chips">
