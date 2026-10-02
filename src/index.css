@@ -125,7 +125,7 @@ header p {
   gap: 8px;
 }
 
-button.keyboard-letter {
+.keyboard button {
   width: 40px;
   height: 40px;
   display: flex;
@@ -138,6 +138,14 @@ button.keyboard-letter {
   cursor: pointer;
   font-family: "Hanken Grotesk", sans-serif;
   font-weight: 500;
+}
+
+.keyboard button.correct {
+  background-color: #10A95B;
+}
+
+.keyboard button.incorrect {
+  background-color: #EC5D49;
 }
 
 .new-game {

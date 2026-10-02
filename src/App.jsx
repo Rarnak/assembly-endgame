@@ -3,13 +3,13 @@ import Status from "./components/Status"
 import LanguageChip from "./components/LanguageChip"
 import { languages } from "./../languages.js"
 import { useState } from "react"
-
+import clsx from "clsx"
 export default function App() {
   const [currentWord, setCurrentWord] = useState('react')
 
   const [guess, setGuess] = useState([])
 
-  console.log(guess)
+  // console.log(guess)
 
   function addGuessLetter(letter) {
     setGuess(prevGuess => {
@@ -22,14 +22,25 @@ export default function App() {
   const alphabets = 'abcdefghijklmnopqrstuvwxyz'
 
   const KeyboardElements = alphabets.split("").map(letter => {
+
+    const isGuessed = guess.includes(letter)
+    const isCorrect = isGuessed && currentWord.includes(letter)
+    const isIncorrect = isGuessed && !currentWord.includes(letter)
+
+    const className = clsx({
+      correct: isCorrect,
+      incorrect: isIncorrect
+    })
+
     return <button
       key={letter}
-      className="keyboard-letter"
+      className={className}
       onClick={() => { addGuessLetter(letter) }}
     >
       {letter.toUpperCase()}
     </button>
-  })
+  }
+)
 
   const letterElements = currentWord.split("").map((letter, index) => {
     return <span
