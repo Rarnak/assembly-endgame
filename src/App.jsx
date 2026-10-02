@@ -21,7 +21,13 @@ export default function App() {
   // }).length
 
   // console.log(wrongGuessCount)
+  const isGameLost = (languages.length - 1 <= wrongGuessCount)
 
+  const isGameWon = currentWord.split("").every((letter) => (guess.includes(letter)))
+
+  const isGameOver = isGameLost || isGameWon
+
+  // console.log(isGameOver)
 
   // console.log(guess)
 
@@ -112,6 +118,6 @@ export default function App() {
     <section className="keyboard">
       {KeyboardElements}
     </section>
-    <button className="new-game">New Game</button>
+    {isGameOver? <button className="new-game">New Game</button> : undefined}
   </main>)
 }
