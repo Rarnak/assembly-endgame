@@ -40,21 +40,21 @@ export default function App() {
       {letter.toUpperCase()}
     </button>
   }
-)
+  )
 
   const letterElements = currentWord.split("").map((letter, index) => {
 
-    const isGuessed = guess.includes(letter)
+    // const isGuessed = guess.includes(letter)
 
-    const className = clsx({
-      letter,
-      reveal: isGuessed
-    })
+    // const className = clsx({
+    //   letter,
+    //   reveal: isGuessed
+    // })
 
     return <span
       key={index}
-      className={className}>
-      {letter.toUpperCase()}
+      className="letter">
+      {(guess.includes(letter)) ? letter.toUpperCase() : ""}
     </span>
   })
 

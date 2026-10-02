@@ -104,7 +104,7 @@ header p {
 
 .letter {
   background-color: #323232;
-  color: #323232;
+  color: #F9F4DA;
   font-size: 18;
   font-weight: bold;
   width: 40px;
@@ -115,9 +115,9 @@ header p {
   border-bottom: 2px solid #F9F4DA;
 }
 
-.letter.reveal {
+/* .letter.reveal {
   color: #F9F4DA
-}
+} */
 
 .keyboard {
   padding-top: 20px;
