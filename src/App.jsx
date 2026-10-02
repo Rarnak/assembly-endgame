@@ -1,13 +1,27 @@
 import Header from "./components/Header"
 import Status from "./components/Status"
-import LanguageChip from "./components/LanguageChip"
 import { languages } from "./../languages.js"
 import { useState } from "react"
 import clsx from "clsx"
 export default function App() {
-  const [currentWord, setCurrentWord] = useState('react')
 
+  // state variables
+  const [currentWord, setCurrentWord] = useState('react')
   const [guess, setGuess] = useState([])
+
+  // derived variables
+  const wrongGuessCount = guess.reduce((count, letter) => {
+    return (currentWord.includes(letter)) ? count : count + 1
+  }, 0)
+
+  // a different approach
+
+  // const wrongGuessCount = guess.filter((letter) => {
+  //   return !currentWord.includes(letter)
+  // }).length
+
+  // console.log(wrongGuessCount)
+
 
   // console.log(guess)
 
@@ -58,12 +72,31 @@ export default function App() {
     </span>
   })
 
-  const languageElements = languages.map((language) => {
-    return <LanguageChip
-      key={language.name}
-      {...language}
-    />
+  const languageElements = languages.map((language, index) => {
+    const styles = {
+      color: language.color,
+      backgroundColor: language.backgroundColor
+    }
+
+    const className = clsx({
+      chip: true,
+      lost: (index) < wrongGuessCount
+    })
+    return <span
+      key={index}
+      style={styles}
+      className={className}
+    >
+      {language.name}
+    </span>
   })
+  // const languageElements = languages.map((language) => {
+  //   return <LanguageChip
+  //     key={language.name}
+  //     wrongGuessCount={wrongGuessCount}
+  //     {...language}
+  //   />
+  // })
 
   return (<main>
     <section className="header">
