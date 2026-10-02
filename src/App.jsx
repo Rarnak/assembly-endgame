@@ -7,12 +7,25 @@ import { useState } from "react"
 export default function App() {
   const [currentWord, setCurrentWord] = useState('react')
 
+  const [guess, setGuess] = useState([])
+
+  console.log(guess)
+
+  function addGuessLetter(letter) {
+    setGuess(prevGuess => {
+      return prevGuess.includes(letter) ?
+        prevGuess :
+        [...prevGuess, letter]
+    })
+  }
+
   const alphabets = 'abcdefghijklmnopqrstuvwxyz'
 
   const KeyboardElements = alphabets.split("").map(letter => {
     return <button
       key={letter}
       className="keyboard-letter"
+      onClick={() => { addGuessLetter(letter) }}
     >
       {letter.toUpperCase()}
     </button>

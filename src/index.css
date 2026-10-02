@@ -7,7 +7,7 @@ body {
   background-color: #282726;
   font-family: "Hanken Grotesk", sans-serif;
   height: 100vh;
-  padding: 20px;
+  padding: 20px 73px;
   display: flex;
   justify-content: center;
 }
@@ -137,6 +137,7 @@ button.keyboard-letter {
   border-radius: 4px;
   cursor: pointer;
   font-family: "Hanken Grotesk", sans-serif;
+  font-weight: 500;
 }
 
 .new-game {
