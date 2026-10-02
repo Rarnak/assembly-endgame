@@ -43,9 +43,17 @@ export default function App() {
 )
 
   const letterElements = currentWord.split("").map((letter, index) => {
+
+    const isGuessed = guess.includes(letter)
+
+    const className = clsx({
+      letter,
+      reveal: isGuessed
+    })
+
     return <span
       key={index}
-      className="letter">
+      className={className}>
       {letter.toUpperCase()}
     </span>
   })
