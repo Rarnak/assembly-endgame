@@ -13,11 +13,13 @@ export default function App() {
   const wrongGuessCount = guess.reduce((count, letter) => {
     return (currentWord.includes(letter)) ? count : count + 1
   }, 0)
+  const numberOfGuess = languages.length - 1 - wrongGuessCount
   const isGameLost = (languages.length - 1 <= wrongGuessCount)
   const isGameWon = currentWord.split("").every((letter) => (guess.includes(letter)))
   const lastGuessLetter = guess[guess.length - 1]
   const isLastGuessIncorrect = lastGuessLetter && !currentWord.includes(lastGuessLetter)
   const isGameOver = isGameLost || isGameWon
+  console.log(`${numberOfGuess} attempts left`)
 
   function addGuessLetter(letter) {
     setGuess(prevGuess => {
@@ -28,7 +30,6 @@ export default function App() {
   }
 
   const alphabets = 'abcdefghijklmnopqrstuvwxyz'
-
   const KeyboardElements = alphabets.split("").map(letter => {
 
     const isGuessed = guess.includes(letter)
@@ -129,8 +130,14 @@ export default function App() {
       aria-live="polite"
       role="status"
     >
+      <p>
+        {currentWord.includes(lastGuessLetter) ?
+          `Correct ${lastGuessLetter} is in the word` :
+          `Incorrect ${lastGuessLetter} is not in the word`}
+        You have {numberOfGuess} attempts left.
+      </p>
       <p>Current word :
-        {currentWord.split("").map(letter => 
+        {currentWord.split("").map(letter =>
           guess.includes(letter) ? letter + "." : "blank").join(" ")}
       </p>
     </section>
