@@ -3,12 +3,12 @@ import { languages } from "./../languages.js"
 import { useState } from "react"
 import clsx from "clsx"
 import { getFarewellText, getRandomWord } from "../util.js"
+import ReactConfetti from "react-confetti"
 export default function App() {
 
   // state variables
   const [currentWord, setCurrentWord] = useState(() => getRandomWord())
   const [guess, setGuess] = useState([])
-  console.log(currentWord)
   // derived variables
   const wrongGuessCount = guess.reduce((count, letter) => {
     return (currentWord.includes(letter)) ? count : count + 1
@@ -121,6 +121,7 @@ export default function App() {
   }
 
   return (<main>
+    {isGameWon? <ReactConfetti /> : undefined}
     <section className="header">
       <Header />
       <section
