@@ -56,7 +56,7 @@ export default function App() {
   const revealLetterElements = currentWord.split("").map((letter, index) => {
     return <span
       key={index}
-      className={clsx('letter', guess.includes(letter) ? 'incorrect' : '' )}
+      className={clsx('letter', guess.includes(letter) ? 'incorrect' : '')}
     >{letter.toUpperCase()}</span>
   })
 
@@ -97,7 +97,7 @@ export default function App() {
 
     if (!isGameOver && isLastGuessIncorrect) {
       return <p>
-        "{getFarewellText(languages[wrongGuessCount - 1].name)}" 🫡
+        {getFarewellText(languages[wrongGuessCount - 1].name)} 🫡
       </p>
     }
     else if (isGameWon) {
@@ -121,7 +121,10 @@ export default function App() {
   }
 
   return (<main>
-    {isGameWon? <ReactConfetti /> : undefined}
+    {isGameWon ? <ReactConfetti
+      recycle = {false}
+      numberOfPieces={1500}
+    /> : undefined}
     <section className="header">
       <Header />
       <section
@@ -135,7 +138,7 @@ export default function App() {
       {languageElements}
     </section>
     <section className="word">
-      {isGameLost? revealLetterElements : letterElements}
+      {isGameLost ? revealLetterElements : letterElements}
     </section>
     <section className="sr-only"
       aria-live="polite"
