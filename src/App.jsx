@@ -2,6 +2,7 @@ import Header from "./components/Header"
 import { languages } from "./../languages.js"
 import { useState } from "react"
 import clsx from "clsx"
+import { getFarewellText } from "../util.js"
 export default function App() {
 
   // state variables
@@ -13,6 +14,10 @@ export default function App() {
     return (currentWord.includes(letter)) ? count : count + 1
   }, 0)
 
+  const languageNames = languages.map(language => language.name)
+
+  // console.log(languageNames)
+
   // a different approach
 
   // const wrongGuessCount = guess.filter((letter) => {
@@ -22,9 +27,19 @@ export default function App() {
   // console.log(wrongGuessCount)
   const isGameLost = (languages.length - 1 <= wrongGuessCount)
 
+
   const isGameWon = currentWord.split("").every((letter) => (guess.includes(letter)))
 
+  const isLanguageLost = isGameLost ? false : isGameWon ? false : wrongGuessCount > 0
+
+  console.log(isLanguageLost)
+
   const isGameOver = isGameLost || isGameWon
+
+  const lostLanguages = [...languageNames.slice(0,wrongGuessCount)]
+
+  console.log(lostLanguages)
+
   // console.log(isGameOver)
 
   // console.log(guess)
@@ -115,14 +130,18 @@ export default function App() {
   //     ""
   // )
 
+  console.log(getFarewellText(lostLanguages))
+
   const gameStatusClass = clsx('game-status',
     isGameLost ? 'lose' : '',
-    isGameWon ? 'win' : '')
+    isGameWon ? 'win' : '',
+    isLanguageLost ? 'language-lost' : '',
+  )
 
 
   function renderGameStatus() {
-    if (!isGameOver) {
-      return null
+    if (isLanguageLost) {
+      return (<h2>{getFarewellText(lostLanguages)}</h2>)
     } else if (isGameWon) {
       return (<>
         <h2>You Win</h2>
