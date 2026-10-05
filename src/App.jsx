@@ -43,11 +43,12 @@ export default function App() {
     return <button
       key={letter}
       className={className}
-      onClick={ !isGameOver? () => { addGuessLetter(letter) } : undefined}
+      disabled={isGameOver}
+      onClick={() => { addGuessLetter(letter) }}
     >
       {letter.toUpperCase()}
     </button>
-  }
+    }
   )
 
   const letterElements = currentWord.split("").map((letter, index) => {
