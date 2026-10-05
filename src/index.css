@@ -150,6 +150,10 @@ header p {
   border-bottom: 2px solid #F9F4DA;
 }
 
+.letter.incorrect{
+  color: #EC5D49
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

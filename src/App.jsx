@@ -19,7 +19,6 @@ export default function App() {
   const lastGuessLetter = guess[guess.length - 1]
   const isLastGuessIncorrect = lastGuessLetter && !currentWord.includes(lastGuessLetter)
   const isGameOver = isGameLost || isGameWon
-  console.log(`${numberOfGuess} attempts left`)
 
   function addGuessLetter(letter) {
     setGuess(prevGuess => {
@@ -54,8 +53,14 @@ export default function App() {
   }
   )
 
-  const letterElements = currentWord.split("").map((letter, index) => {
+  const revealLetterElements = currentWord.split("").map((letter, index) => {
+    return <span
+      key={index}
+      className={clsx('letter', guess.includes(letter) ? 'incorrect' : '' )}
+    >{letter.toUpperCase()}</span>
+  })
 
+  const letterElements = currentWord.split("").map((letter, index) => {
     return <span
       key={index}
       className="letter">
@@ -129,7 +134,7 @@ export default function App() {
       {languageElements}
     </section>
     <section className="word">
-      {letterElements}
+      {isGameLost? revealLetterElements : letterElements}
     </section>
     <section className="sr-only"
       aria-live="polite"
