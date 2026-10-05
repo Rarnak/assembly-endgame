@@ -13,14 +13,6 @@ export default function App() {
   const wrongGuessCount = guess.reduce((count, letter) => {
     return (currentWord.includes(letter)) ? count : count + 1
   }, 0)
-
-  // a different approach
-
-  // const wrongGuessCount = guess.filter((letter) => {
-  //   return !currentWord.includes(letter)
-  // }).length
-
-  // console.log(wrongGuessCount)
   const isGameLost = (languages.length - 1 <= wrongGuessCount)
   const isGameWon = currentWord.split("").every((letter) => (guess.includes(letter)))
   const lastGuessLetter = guess[guess.length - 1]
@@ -51,7 +43,7 @@ export default function App() {
     return <button
       key={letter}
       className={className}
-      onClick={() => { addGuessLetter(letter) }}
+      onClick={ !isGameOver? () => { addGuessLetter(letter) } : undefined}
     >
       {letter.toUpperCase()}
     </button>
@@ -59,13 +51,6 @@ export default function App() {
   )
 
   const letterElements = currentWord.split("").map((letter, index) => {
-
-    // const isGuessed = guess.includes(letter)
-
-    // const className = clsx({
-    //   letter,
-    //   reveal: isGuessed
-    // })
 
     return <span
       key={index}
@@ -92,26 +77,6 @@ export default function App() {
       {language.name}
     </span>
   })
-  // const languageElements = languages.map((language) => {
-  //   return <LanguageChip
-  //     key={language.name}
-  //     wrongGuessCount={wrongGuessCount}
-  //     {...language}
-  //   />
-  // })
-
-  // const gameStatus = (isGameWon ?
-  //   "You Win" :
-  //   isGameLost ?
-  //     "Game Over!" :
-  //     "")
-
-  // const gameMessage = (isGameWon ?
-  //   "Well done! 🎉" :
-  //   isGameLost ?
-  //     "You lose! Better start learning Assembly 😭" :
-  //     ""
-  // )
 
   const gameStatusClass = clsx('game-status',
     isGameLost ? 'lose' : '',
@@ -123,7 +88,7 @@ export default function App() {
 
     if (!isGameOver && isLastGuessIncorrect) {
       return <p>
-        "{getFarewellText(languages[wrongGuessCount -1].name)}" 🫡
+        "{getFarewellText(languages[wrongGuessCount - 1].name)}" 🫡
       </p>
     }
     else if (isGameWon) {
@@ -145,8 +110,6 @@ export default function App() {
     <section className="header">
       <Header />
       <section className={gameStatusClass}>
-        {/* <h2>{gameStatus}</h2>
-        <p className="game-message">{gameMessage}</p> */}
         {renderGameStatus()}
       </section>
     </section>
