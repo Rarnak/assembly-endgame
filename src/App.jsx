@@ -8,7 +8,7 @@ export default function App() {
   // state variables
   const [currentWord, setCurrentWord] = useState(() => getRandomWord())
   const [guess, setGuess] = useState([])
-
+  console.log(currentWord)
   // derived variables
   const wrongGuessCount = guess.reduce((count, letter) => {
     return (currentWord.includes(letter)) ? count : count + 1
