@@ -2,11 +2,11 @@ import Header from "./components/Header"
 import { languages } from "./../languages.js"
 import { useState } from "react"
 import clsx from "clsx"
-import { getFarewellText } from "../util.js"
+import { getFarewellText, getRandomWord } from "../util.js"
 export default function App() {
 
   // state variables
-  const [currentWord, setCurrentWord] = useState('react')
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord())
   const [guess, setGuess] = useState([])
 
   // derived variables
