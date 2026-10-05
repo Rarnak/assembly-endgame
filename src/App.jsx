@@ -14,10 +14,6 @@ export default function App() {
     return (currentWord.includes(letter)) ? count : count + 1
   }, 0)
 
-  const languageNames = languages.map(language => language.name)
-
-  // console.log(languageNames)
-
   // a different approach
 
   // const wrongGuessCount = guess.filter((letter) => {
@@ -26,23 +22,10 @@ export default function App() {
 
   // console.log(wrongGuessCount)
   const isGameLost = (languages.length - 1 <= wrongGuessCount)
-
-
   const isGameWon = currentWord.split("").every((letter) => (guess.includes(letter)))
-
-  const isLanguageLost = isGameLost ? false : isGameWon ? false : wrongGuessCount > 0
-
-  console.log(isLanguageLost)
-
+  const lastGuessLetter = guess[guess.length - 1]
+  const isLastGuessIncorrect = lastGuessLetter && !currentWord.includes(lastGuessLetter)
   const isGameOver = isGameLost || isGameWon
-
-  const lostLanguages = [...languageNames.slice(0,wrongGuessCount)]
-
-  console.log(lostLanguages)
-
-  // console.log(isGameOver)
-
-  // console.log(guess)
 
   function addGuessLetter(letter) {
     setGuess(prevGuess => {
@@ -130,19 +113,20 @@ export default function App() {
   //     ""
   // )
 
-  console.log(getFarewellText(lostLanguages))
-
   const gameStatusClass = clsx('game-status',
     isGameLost ? 'lose' : '',
     isGameWon ? 'win' : '',
-    isLanguageLost ? 'language-lost' : '',
+    isLastGuessIncorrect && !isGameOver ? 'farewell' : '',
   )
 
-
   function renderGameStatus() {
-    if (isLanguageLost) {
-      return (<h2>{getFarewellText(lostLanguages)}</h2>)
-    } else if (isGameWon) {
+
+    if (!isGameOver && isLastGuessIncorrect) {
+      return <p>
+        "{getFarewellText(languages[wrongGuessCount -1].name)}" 🫡
+      </p>
+    }
+    else if (isGameWon) {
       return (<>
         <h2>You Win</h2>
         <p>Well done! 🎉</p>
