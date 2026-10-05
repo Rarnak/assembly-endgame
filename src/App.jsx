@@ -110,6 +110,11 @@ export default function App() {
     }
   }
 
+  function startNewGame() {
+    setGuess([])
+    setCurrentWord(() => getRandomWord())
+  }
+
   return (<main>
     <section className="header">
       <Header />
@@ -144,6 +149,8 @@ export default function App() {
     <section className="keyboard">
       {KeyboardElements}
     </section>
-    {isGameOver ? <button className="new-game">New Game</button> : undefined}
+    {isGameOver ? <button
+      onClick={startNewGame}
+      className="new-game">New Game</button> : undefined}
   </main>)
 }
