@@ -44,11 +44,13 @@ export default function App() {
       key={letter}
       className={className}
       disabled={isGameOver}
+      aria-disabled={guess.includes(letter)}
+      aria-label={`letter ${letter}`}
       onClick={() => { addGuessLetter(letter) }}
     >
       {letter.toUpperCase()}
     </button>
-    }
+  }
   )
 
   const letterElements = currentWord.split("").map((letter, index) => {
@@ -110,7 +112,10 @@ export default function App() {
   return (<main>
     <section className="header">
       <Header />
-      <section className={gameStatusClass}>
+      <section
+        aria-live="polite"
+        role="status"
+        className={gameStatusClass}>
         {renderGameStatus()}
       </section>
     </section>
@@ -119,6 +124,15 @@ export default function App() {
     </section>
     <section className="word">
       {letterElements}
+    </section>
+    <section className="sr-only"
+      aria-live="polite"
+      role="status"
+    >
+      <p>Current word :
+        {currentWord.split("").map(letter => 
+          guess.includes(letter) ? letter + "." : "blank").join(" ")}
+      </p>
     </section>
     <section className="keyboard">
       {KeyboardElements}
